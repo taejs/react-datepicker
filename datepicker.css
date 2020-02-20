@@ -1,0 +1,8 @@
+.datepicker__container{
+    width:200px;
+}
+
+.datepicker__cell{
+    width:calc(100% / 7);
+    display: inline-block;
+}
