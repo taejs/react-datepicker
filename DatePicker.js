@@ -14,8 +14,8 @@ function DatePicker() {
     const handleFocus = () => open();
 
     useHandleOuterClick(ref, close);
-    const handleDateChange = (dateString) => {
-        setDate(Date.parse(dateString));
+    const handleDateChange = (date) => {
+        setDate(date);
     }
 
     return <div class="datepicker__container" ref={ref}>

@@ -16,11 +16,16 @@ function Calendar({
     selectedDate,
     handleDateChange
 }) {
+    const handleMonthChangeButton = (direction) => {
+        const flag = (direction === 'prev') ? -1 : 1;
+        handleDateChange(new Date(selectedDate.dateTime.setMonth(selectedDate.dateTime.getMonth() + flag)));
+    }
+
     return <div className="calendar__container">
         <div className="calendar__indicator">
-            <button className="calendar__navigator calendar__navigator--prev-month"></button>
+            <button onClick={()=>handleMonthChangeButton('prev')} className="calendar__navigator calendar__navigator--prev-month"></button>
                 { selectedDate.year + '.' + selectedDate.month }
-            <button className="calendar__navigator calendar__navigator--next-month"></button>
+            <button onClick={()=>handleMonthChangeButton('next')} className="calendar__navigator calendar__navigator--next-month"></button>
         </div>
         <div className="calendar__header">
             { renderDays(selectedDate) }
