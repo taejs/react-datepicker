@@ -1,8 +1,10 @@
 import React, { useRef, useState, useCallback } from 'react';
+import classNames from 'classnames';
 import Calendar from './Calendar';
 import useHandleOuterClick from './useHandleOuterClick';
 import './datepicker.css';
 import useDates from './useDates';
+
 
 function DatePicker() {
     const ref = useRef();
@@ -18,7 +20,7 @@ function DatePicker() {
         setDate(date);
     }
 
-    return <div class="datepicker__container" ref={ref}>
+    return <div class={classNames('datepicker__container')} ref={ref}>
         <input onFocus={handleFocus}/>
         <button></button>
         { isOpen && <Calendar selectedDate={date} handleDateChange={handleDateChange}/>}
