@@ -3,7 +3,28 @@
     position: absolute;
 }
 
+.calendar__indicator {
+    text-align:center;
+    vertical-align: middle;
+    position: relative;
+}
+
+.calendar__navigator{
+    position: absolute;
+    width:20px;
+    height:20px;
+}
+
+.calendar__navigator--prev-month {
+    left:0px;
+}
+
+.calendar__navigator--next-month {
+    right : 0px;
+}
+
 .calendar__cell{
+    text-align: center;
     width:calc(100% / 7);
     display: inline-block;
 }
