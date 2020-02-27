@@ -13,7 +13,13 @@ function DatePicker() {
     const open = useCallback(()=> setIsOpen(true), []);
     const close = useCallback(()=> setIsOpen(false), []);
 
-    const handleFocus = () => open();
+    const handleFocus = () => {
+        if(!date) { // 초기화
+            let today = new Date();
+            setDate(new DateValue(today.getFullYear(), today.getMonth() + 1, today.getDate()));
+        }
+        open();
+    }
 
     useHandleOuterClick(ref, close);
     const handleDateChange = (date) => {
