@@ -8,16 +8,11 @@ function CalendarControl({
     selectedDate,
     onDateChange
 }) {
-    const handleMonthChangeButton = (direction) => {
-        const flag = (direction === 'prev') ? -1 : 1;
-        onDateChange(new DateValue(selectedDate.year, selectedDate.month + flag, selectedDate.date));
-    }
-
     return (
         <div className={c_indicator}>
-        <button onClick={()=>handleMonthChangeButton('prev')} className={classNames('calendar__navigator', 'calendar__navigator--prev-month')}></button>
+        <button onClick={()=>onDateChange('prev')} className={classNames('calendar__navigator', 'calendar__navigator--prev-month')}></button>
             { selectedDate.year + '.' + selectedDate.month }
-        <button onClick={()=>handleMonthChangeButton('next')} className={classNames('calendar__navigator', 'calendar__navigator--next-month')}></button>
+        <button onClick={()=>onDateChange('next')} className={classNames('calendar__navigator', 'calendar__navigator--next-month')}></button>
         </div>
     );
 }

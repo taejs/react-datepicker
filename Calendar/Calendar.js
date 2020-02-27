@@ -16,10 +16,15 @@ function Calendar({
         handleDateChange(new DateValue(selectedDate.year, selectedDate.month, date));
     };
 
+    const handleControlChange = (direction) => {
+      const flag = (direction === 'prev') ? -1 : 1;
+      handleDateChange(new DateValue(selectedDate.year, selectedDate.month + flag, selectedDate.date));
+    }
+
     const isValidIndex = i => (i >= selectedDate.startOfMonth && i < selectedDate.endOfMonth + selectedDate.startOfMonth);
 
     return <div className={c_container}>
-        <CalendarControl selectedDate={selectedDate} onDateChange={handleDateChange} />
+        <CalendarControl selectedDate={selectedDate} onDateChange={handleControlChange} />
         <CalendarHead />
         <div className={c_body}>
             {
