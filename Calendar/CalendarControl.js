@@ -1,19 +1,20 @@
 import React from 'react';
 import classNames from 'classnames';
+import DateValue from '../DateValue';
 
-const day = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+const c_indicator = classNames('calendar__indicator');
 
 function CalendarControl({
     selectedDate,
-    handleDateChange
+    onDateChange
 }) {
     const handleMonthChangeButton = (direction) => {
         const flag = (direction === 'prev') ? -1 : 1;
-        handleDateChange(new Date(selectedDate.dateTime.setMonth(selectedDate.dateTime.getMonth() + flag)));
+        onDateChange(new DateValue(selectedDate.year, selectedDate.month + flag, selectedDate.date));
     }
 
     return (
-        <div className={classNames('calendar__indicator')}>
+        <div className={c_indicator}>
         <button onClick={()=>handleMonthChangeButton('prev')} className={classNames('calendar__navigator', 'calendar__navigator--prev-month')}></button>
             { selectedDate.year + '.' + selectedDate.month }
         <button onClick={()=>handleMonthChangeButton('next')} className={classNames('calendar__navigator', 'calendar__navigator--next-month')}></button>

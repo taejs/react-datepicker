@@ -2,11 +2,11 @@ import React from 'react';
 import classNames from 'classnames';
 
 function calendarCell({
-    handleClick,
+    onClick,
     children
 }) {
         return (
-        <div onClick={handleClick} className={classNames('calendar__cell')}>
+        <div onClick={onClick} className={classNames('calendar__cell')}>
             { children }
         </div>)
 
