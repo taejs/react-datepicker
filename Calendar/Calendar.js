@@ -16,7 +16,7 @@ function Calendar({
         handleDateChange(new DateValue(selectedDate.year, selectedDate.month, date));
     };
 
-    const isValidIndex = i => (i >= selectedDate.startOfMonth && i < selectedDate.endOfLastMonth + selectedDate.startOfMonth);
+    const isValidIndex = i => (i >= selectedDate.startOfMonth && i < selectedDate.endOfMonth + selectedDate.startOfMonth);
 
     return <div className={c_container}>
         <CalendarControl selectedDate={selectedDate} onDateChange={handleDateChange} />
