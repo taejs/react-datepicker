@@ -5,11 +5,11 @@ function calendarCell({
     onClick,
     children
 }) {
-        return (
-        <div onClick={onClick} className={classNames('calendar__cell')}>
-            { children }
-        </div>)
-
+  return (
+  <button onClick={onClick} className={classNames('calendar__cell')}>
+      { children }
+  </button>
+  )
 }
 
 export default calendarCell;
