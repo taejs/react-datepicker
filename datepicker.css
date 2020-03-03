@@ -7,13 +7,21 @@
 }
 
 .calendar__body{
+    position: relative;
     height: 150px;
+    background: #FFFFFF;
 }
 
 .calendar__indicator {
+    user-select: none;
     text-align:center;
     vertical-align: middle;
     position: relative;
+}
+.calendar__overlay {
+    position: absolute;
+    left:0;
+    top:0;
 }
 
 .calendar__navigator{
@@ -57,6 +65,8 @@
     color:#666666;
     border-radius: 100%;
 }
+
+
 .month-calendar__cell:hover{
     background: #d1e4f7;
 }
@@ -74,6 +84,30 @@
 .month-calendar__cell--selected:hover{
     color:#ffffff;
     background:#458eff;
+}
+
+.year-calendar__cell {
+    user-select: none;
+    text-align: center;
+    border-radius: 10px;
+    width : 47px;
+    height : 22px;
+    border:0;
+    background: #ffffff;
+    padding: 0;
+}
+
+.year-calendar__cell:focus{
+    outline: 0;
+}
+
+.year-calendar__cell--selected {
+    color:#ffffff;
+    background:#458eff;
+
+}
+.year-calendar__cell:hover{
+    cursor: pointer;
 }
 
 .datepicker__container {
