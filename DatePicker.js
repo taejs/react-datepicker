@@ -10,12 +10,14 @@ import YearCalendar from './Calendar/YearCalendar';
 
 const c_container = classNames('calendar__container');
 
-function DatePicker() {
+function DatePicker(props) {
     const ref = useRef();
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(props.isOpen || false);
+    const [date, setDate] = useDates(props.value);
+    const [inputValue, setInputValue] = useState(date || null);
     const [currentCalendar, setCurrentCalendar] = useState(null);
-    const [date, setDate] = useDates(null);
-    const [inputValue, setInputValue] = useState('');
+
+    useHandleOuterClick(ref, ()=>setIsOpen(false));
 
     const handleFocus = () => {
         if(!date) { // 초기화
@@ -25,18 +27,14 @@ function DatePicker() {
         setIsOpen(true);
     }
 
-    useHandleOuterClick(ref, ()=>setIsOpen(false));
+    const handleCalendarChange = (calendarType) => setCurrentCalendar(calendarType);
 
     const handleDateChange = (date) => {
         setDate(date);
         setInputValue(date);
     }
-
-    const handleCalendarChange = (calendarType) => {
-        setCurrentCalendar(calendarType);
-    }
         
-    const renderCalendar = (openedLayer) => { // 년,월 선택하는 창 띄우기
+    const renderCalendar = (openedLayer) => { // 년,월 선택하는 달력으로 변경 하도록
         const props  = {
             selectedDate : date,
             onDateChange : handleDateChange,
@@ -50,11 +48,11 @@ function DatePicker() {
         }
     }
 
-    return <div className={classNames('datepicker__container')} ref={ref}>
-                                                                  <input value={inputValue} onFocus={handleFocus}/>
-<button></button>
-    { isOpen && <div className={c_container} >{ renderCalendar(currentCalendar) }</div>}
-</div>
+    return (
+    <div className={classNames('datepicker__container')} ref={ref}>
+        <input value={inputValue} onFocus={handleFocus}/>
+        { isOpen && <div className={c_container} >{ renderCalendar(currentCalendar) }</div>}
+    </div>);
 }
 
 export default DatePicker;
