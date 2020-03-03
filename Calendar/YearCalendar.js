@@ -4,20 +4,19 @@ import CalendarControl from './CalendarControl';
 import DateValue from '../DateValue';
 import YearCalendarCell from './YearCalendarCell';
 
-const c_container = classNames('calendar__container');
 const c_body = classNames('calendar__body');
 
 function YearCalendar({
   selectedDate,
   onDateChange,
-  onCalendarSwitch
+  onCalendarChange
 }) {
   let startYear = Math.floor((selectedDate.year - 1 ) / 20) * 20; //2001 - 2020처럼 20년 주기로 보임
   console.log(startYear);
 
   const handleCellClick = (year) => {
     onDateChange(new DateValue(year, selectedDate.month, selectedDate.date));
-    onCalendarSwitch(null);
+    onCalendarChange(null);
   };
 
   const handleControlChange = (direction) => {
@@ -25,8 +24,8 @@ function YearCalendar({
     onDateChange(new DateValue(selectedDate.year + flag, selectedDate.month, selectedDate.date));
   };
 
-  return <div className={c_container}>
-    <CalendarControl selectedDate={selectedDate} onDateChange={handleControlChange} onCalendarSwitch={onCalendarSwitch}/>
+  return <div>
+    <CalendarControl selectedDate={selectedDate} onDateChange={handleControlChange} onCalendarChange={onCalendarChange}/>
     <div className={c_body}>
       {
         new Array(4 * 5).fill(0).map((_, i) =>

@@ -1,40 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classNames from 'classnames';
 import CalendarHead from './CalendarHead';
 import CalendarCell from './CalendarCell';
 import CalendarControl from './CalendarControl';
 import DateValue from '../DateValue';
+import YearCalendar from './YearCalendar';
+import MonthCalendar from './MonthCalendar';
 
-const c_container = classNames('calendar__container');
 const c_body = classNames('calendar__body');
 
 function Calendar({
     selectedDate,
-    handleDateChange
+    onDateChange,
+    onCalendarChange
 }) {
     const handleCellClick = (date) => {
-        handleDateChange(new DateValue(selectedDate.year, selectedDate.month, date));
+      onDateChange(new DateValue(selectedDate.year, selectedDate.month, date));
     };
 
     const handleControlChange = (direction) => {
       const flag = (direction === 'prev') ? -1 : 1;
-      handleDateChange(new DateValue(selectedDate.year, selectedDate.month + flag, selectedDate.date));
+      onDateChange(new DateValue(selectedDate.year, selectedDate.month + flag, selectedDate.date));
     }
 
     const isValidIndex = i => (i >= selectedDate.startOfMonth && i < selectedDate.endOfMonth + selectedDate.startOfMonth);
 
-    return <div className={c_container}>
-        <CalendarControl selectedDate={selectedDate} onDateChange={handleControlChange} />
-        <CalendarHead />
-        <div className={c_body}>
-            {
-                new Array(7 * 6).fill(0).map((_, i) =>  
-                {
-                    const date = (isValidIndex(i)) ? i  - selectedDate.startOfMonth + 1 : null;
-                    return <CalendarCell selected={(selectedDate.date === date)} onClick={handleCellClick.bind(null, date)}>{date}</CalendarCell>
-                })
-            }
-        </div>
+    return <div>
+      <CalendarControl selectedDate={selectedDate} onDateChange={handleControlChange} onCalendarChange={onCalendarChange}/>
+      <CalendarHead />
+      <div className={c_body}>
+          {
+              new Array(7 * 6).fill(0).map((_, i) =>
+              {
+                  const date = (isValidIndex(i)) ? i  - selectedDate.startOfMonth + 1 : null;
+                  return <CalendarCell selected={(selectedDate.date === date)} onClick={handleCellClick.bind(null, date)}>{date}</CalendarCell>
+              })
+          }
+      </div>
     </div>
 }
 

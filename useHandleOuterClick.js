@@ -5,14 +5,15 @@ import React, { useEffect } from "react";
  */
 function useDetectOuterClick(ref, callback) {
     const handleClickOutside = e => {
+        debugger;
         if(ref.current && !ref.current.contains(e.target)) {
             callback();
         }
     }
 
     useEffect(() => {
-        document.addEventListener('click', handleClickOutside);
-        return () => document.removeEventListener('click', handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 }
 

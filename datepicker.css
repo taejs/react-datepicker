@@ -18,6 +18,16 @@
     vertical-align: middle;
     position: relative;
 }
+
+.calendar__switch{
+    background:0;
+    border:0;
+}
+
+.calendar__switch-container{
+    display: inline-block;
+}
+
 .calendar__overlay {
     position: absolute;
     left:0;

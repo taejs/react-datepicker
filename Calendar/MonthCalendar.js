@@ -4,17 +4,16 @@ import CalendarControl from './CalendarControl';
 import DateValue from '../DateValue';
 import MonthCalendarCell from './MonthCalendarCell';
 
-const c_container = classNames('calendar__container');
 const c_body = classNames('calendar__body');
 
 function MonthCalendar({
    selectedDate,
    onDateChange,
-   onCalendarSwitch
+   onCalendarChange
 }) {
   const handleCellClick = (month) => {
     onDateChange(new DateValue(selectedDate.year, month, selectedDate.date));
-    onCalendarSwitch(null);
+    onCalendarChange(null);
   };
 
   const handleControlChange = (direction) => {
@@ -22,8 +21,8 @@ function MonthCalendar({
     onDateChange(new DateValue(selectedDate.year + flag, selectedDate.month, selectedDate.date));
   }
 
-  return <div className={c_container}>
-    <CalendarControl selectedDate={selectedDate} onDateChange={handleControlChange} onCalendarSwitch={onCalendarSwitch}/>
+  return <div>
+    <CalendarControl selectedDate={selectedDate} onDateChange={handleControlChange} onCalendarChange={onCalendarChange}/>
     <div className={c_body}>
       {
         new Array(12).fill(0).map((_, i) =>
